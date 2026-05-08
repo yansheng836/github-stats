@@ -59,6 +59,7 @@ class Queries(object):
                     "https://api.github.com/graphql",
                     headers=headers,
                     json={"query": generated_query},
+                    timeout=30,
                 )
                 result = r_requests.json()
                 if result is not None:
@@ -105,6 +106,7 @@ class Queries(object):
                         f"https://api.github.com/{path}",
                         headers=headers,
                         params=tuple(params.items()),
+                        timeout=30,
                     )
                     if r_requests.status_code == 202:
                         print(f"A path returned 202. Retrying...")
@@ -536,7 +538,8 @@ async def main() -> None:
         raise RuntimeError(
             "ACCESS_TOKEN and GITHUB_ACTOR environment variables cannot be None!"
         )
-    async with aiohttp.ClientSession() as session:
+    timeout = aiohttp.ClientTimeout(total=60, connect=10, sock_read=30)
+    async with aiohttp.ClientSession(timeout=timeout) as session:
         s = Stats(user, access_token, session)
         print(await s.to_str())
 

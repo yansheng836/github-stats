@@ -120,7 +120,8 @@ async def main() -> None:
         not not raw_ignore_forked_repos
         and raw_ignore_forked_repos.strip().lower() != "false"
     )
-    async with aiohttp.ClientSession() as session:
+    timeout = aiohttp.ClientTimeout(total=60, connect=10, sock_read=30)
+    async with aiohttp.ClientSession(timeout=timeout) as session:
         s = Stats(
             user,
             access_token,
