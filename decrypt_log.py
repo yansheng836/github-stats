@@ -8,6 +8,7 @@ import sys
 SALT = os.environ.get("LOG_MASK_SALT")
 if not SALT:
     print("错误：请设置环境变量 LOG_MASK_SALT（与 GitHub Secret 中的值一致）", file=sys.stderr)
+    print("本地设置方式：export LOG_MASK_SALT=\"your-salt-here\"", file=sys.stderr)
     sys.exit(1)
 
 key = hashlib.sha256(SALT.encode()).digest()[:16]

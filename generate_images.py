@@ -99,6 +99,7 @@ async def main() -> None:
     """
     Generate all badges
     """
+    print("[1/4] 读取环境变量...")
     access_token = os.getenv("ACCESS_TOKEN")
     if not access_token:
         # access_token = os.getenv("GITHUB_TOKEN")
@@ -128,6 +129,7 @@ async def main() -> None:
     else:
         log_mask_salt = user
         print("未设置 LOG_MASK_SALT，将使用用户名作为默认盐值。建议设置独立的 LOG_MASK_SALT Secret，避免私有仓库名称泄露在日志中。")
+    print("[2/4] 创建 HTTP 会话...")
     timeout = aiohttp.ClientTimeout(total=60, connect=10, sock_read=30)
     async with aiohttp.ClientSession(timeout=timeout) as session:
         s = Stats(
@@ -140,7 +142,9 @@ async def main() -> None:
             cache_expiry_days=cache_expiry_days,
             log_mask_salt=log_mask_salt,
         )
+        print("[3/4] 获取 GitHub 统计数据并生成 SVG...")
         await asyncio.gather(generate_languages(s), generate_overview(s))
+        print("[4/4] 完成！")
 
 
 if __name__ == "__main__":
