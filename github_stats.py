@@ -82,7 +82,11 @@ class Queries(object):
             params = dict()
         if path.startswith("/"):
             path = path[1:]
+        if log_prefix and log_prefix.startswith("/"):
+            log_prefix = log_prefix[1:]
         display = log_prefix or path
+        full_url = f"https://api.github.com/{path}"
+        display_url = f"https://api.github.com/{display}"
 
         headers = {
             "Authorization": f"token {self.access_token}",
@@ -92,7 +96,7 @@ class Queries(object):
             try:
                 async with self.semaphore:
                     r_async = await self.session.get(
-                        f"https://api.github.com/{path}",
+                        full_url,
                         headers=headers,
                         params=tuple(params.items()),
                     )
@@ -106,13 +110,13 @@ class Queries(object):
                 if result is not None:
                     return result
             except Exception as e:
-                msg = str(e).replace(path, display)
+                msg = str(e).replace(full_url, display_url).replace(path, display)
                 print(f"aiohttp failed for rest query: {msg}")
                 # Fall back on non-async requests
                 try:
                     async with self.semaphore:
                         r_requests = requests.get(
-                            f"https://api.github.com/{path}",
+                            full_url,
                             headers=headers,
                             params=tuple(params.items()),
                             timeout=30,
@@ -125,7 +129,7 @@ class Queries(object):
                         elif r_requests.status_code == 200:
                             return r_requests.json()
                 except Exception as e2:
-                    msg2 = str(e2).replace(path, display)
+                    msg2 = str(e2).replace(full_url, display_url).replace(path, display)
                     print(f"requests also failed: {msg2}")
 
         print(f"Too many 202s for {display}, data will be incomplete.")
