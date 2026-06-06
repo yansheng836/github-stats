@@ -159,3 +159,9 @@ releasing work publicly on the Web.
   [anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
 - Makes use of [GitHub Octicons](https://primer.style/octicons/) to precisely
   match the GitHub UI
+
+# 文档
+
+- [项目使用的 API 分析](项目使用到的API.md) — GitHub GraphQL/REST 接口详细说明、出入参示例、环境变量影响范围
+- [/stats/contributors 缓存优化方案](stats-contributors-缓存优化方案.md) — 公有仓库增量缓存，减少 REST API 请求次数
+- [私有仓库日志脱敏方案](私有仓库日志脱敏方案.md) — 隐藏 Actions 日志中的私有仓库名称

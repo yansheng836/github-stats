@@ -123,6 +123,11 @@ async def main() -> None:
     raw_cache_expiry = os.getenv("CACHE_EXPIRY_DAYS")
     cache_expiry_days = int(raw_cache_expiry) if raw_cache_expiry and raw_cache_expiry.isdigit() else None
     log_mask_salt = os.getenv("LOG_MASK_SALT")
+    if log_mask_salt:
+        print("LOG_MASK_SALT 已设置，私有仓库名称将在日志中脱敏显示。")
+    else:
+        log_mask_salt = user
+        print("未设置 LOG_MASK_SALT，将使用用户名作为默认盐值。建议设置独立的 LOG_MASK_SALT Secret，避免私有仓库名称泄露在日志中。")
     timeout = aiohttp.ClientTimeout(total=60, connect=10, sock_read=30)
     async with aiohttp.ClientSession(timeout=timeout) as session:
         s = Stats(
