@@ -353,6 +353,7 @@ for view in response.get("views", []):
 | `EXCLUDED` | 排除的仓库列表（逗号分隔，如 `owner/repo1,owner/repo2`） | 可选 | GitHub Actions Secret |
 | `EXCLUDED_LANGS` | 排除的语言列表（逗号分隔，如 `html,tex`） | 可选 | GitHub Actions Secret |
 | `EXCLUDE_FORKED_REPOS` | 是否排除 fork 仓库（`true`/`false`） | 可选 | workflow 中硬编码为 `true` |
+| `CACHE_EXPIRY_DAYS` | `/stats/contributors` 缓存过期天数（见下文说明） | 可选 | GitHub Actions Secret |
 
 ### 3.2 变量流转与影响范围
 
@@ -362,14 +363,14 @@ for view in response.get("views", []):
 generate_images.py 读取环境变量
         │
         ▼
-Stats.__init__(exclude_repos, exclude_langs, ignore_forked_repos)
+Stats.__init__(exclude_repos, exclude_langs, ignore_forked_repos, cache_expiry_days)
         │
         ▼
 Queries.__init__(username, access_token)
         │
         ├──→ query()       使用 access_token 认证 GraphQL 请求
         ├──→ query_rest()  使用 access_token 认证 REST 请求
-        └──→ lines_changed 使用 username 过滤当前用户的贡献记录
+        └──→ lines_changed 使用 username 过滤 + cache_expiry_days 控制缓存刷新
 ```
 
 ### 3.3 各变量影响的 API 和数据处理
@@ -425,6 +426,21 @@ Queries.__init__(username, access_token)
 - 但返回结果被代码丢弃，不计入 star/fork/语言统计
 - 被忽略的仓库也不会触发 REST API 调用（节省请求次数）
 
+#### `CACHE_EXPIRY_DAYS` — 影响 `/stats/contributors` 的缓存刷新策略
+
+| 影响的 API/逻辑 | 影响方式 | 代码位置 |
+|----------------|---------|----------|
+| `lines_changed` 中的缓存读写 | 控制公有仓库缓存的强制过期天数 | `github_stats.py:497-597` |
+
+| 值 | 行为 |
+|-----|------|
+| 未设置（默认） | 仅依赖 `pushedAt > fetchedAt` 判断，不设时间兜底 |
+| `7` | 缓存超过 7 天的仓库强制刷新，对齐 `/stats/contributors` 按周聚合的周期 |
+| `10` | 缓存超过 10 天的仓库强制刷新，留一定余量 |
+| `0` | 每次运行都强制刷新所有仓库（等同于禁用缓存） |
+
+> 建议设置 `CACHE_EXPIRY_DAYS: 7`，7 天刚好覆盖一个数据聚合周期，防止 `pushedAt` 未及时更新导致数据陈旧。
+
 ### 3.4 变量对 API 调用次数的影响
 
 以用户拥有 10 个 owned 仓库 + 5 个 contributedTo 仓库为例：
@@ -435,6 +451,7 @@ Queries.__init__(username, access_token)
 | `EXCLUDED` 排除 3 个仓库 | 3 | 12×2 = 24 | 被排除的仓库不触发 REST 调用 |
 | `EXCLUDE_FORKED_REPOS=true` | 3 | 10×2 = 20 | contributedTo 的 5 个仓库被跳过 |
 | `EXCLUDED` + `EXCLUDE_FORKED_REPOS` | 3 | 7×2 = 14 | 两者叠加效果 |
+| 上述 + `CACHE_EXPIRY_DAYS=7`（无更新时） | 3 | 仅私有仓库×2 | 公有仓库使用缓存，不触发 REST 调用 |
 
 ---
 
@@ -452,7 +469,7 @@ lines_changed        views         仓库分页        贡献统计
 ### 4.2 `lines_changed` — 最慢（瓶颈）
 
 - **问题**：对每个仓库调用一次 `/stats/contributors`，O(N) 次 REST 请求
-- **重试逻辑**（`github_stats.py:85-124`）：HTTP 202 时最多重试 10 次，指数退避
+- **重试逻辑**（`github_stats.py:87-126`）：HTTP 202 时最多重试 10 次，指数退避
   - 等待时间：`min(2^(attempt+1), 30)` 秒 → 4s, 8s, 16s, 30s, 30s, ...
   - 单个仓库最坏等待：约 **238 秒**
 - **并发限制**：信号量限制为 10 个并发连接（`github_stats.py:32`）

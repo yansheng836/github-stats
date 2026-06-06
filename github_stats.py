@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 
 import asyncio
+import json
 import os
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Set, Tuple, Any, cast
 
 import aiohttp
@@ -149,6 +151,8 @@ class Queries(object):
       }}
       nodes {{
         nameWithOwner
+        pushedAt
+        isPrivate
         stargazers {{
           totalCount
         }}
@@ -185,6 +189,8 @@ class Queries(object):
       }}
       nodes {{
         nameWithOwner
+        pushedAt
+        isPrivate
         stargazers {{
           totalCount
         }}
@@ -265,11 +271,13 @@ class Stats(object):
         exclude_repos: Optional[Set] = None,
         exclude_langs: Optional[Set] = None,
         ignore_forked_repos: bool = False,
+        cache_expiry_days: Optional[int] = None,
     ):
         self.username = username
         self._ignore_forked_repos = ignore_forked_repos
         self._exclude_repos = set() if exclude_repos is None else exclude_repos
         self._exclude_langs = set() if exclude_langs is None else exclude_langs
+        self._cache_expiry_days = cache_expiry_days
         self.queries = Queries(username, access_token, session)
 
         self._name: Optional[str] = None
@@ -278,6 +286,7 @@ class Stats(object):
         self._total_contributions: Optional[int] = None
         self._languages: Optional[Dict[str, Any]] = None
         self._repos: Optional[Set[str]] = None
+        self._repo_metadata: Dict[str, Dict[str, Any]] = {}
         self._lines_changed: Optional[Tuple[int, int]] = None
         self._views: Optional[int] = None
 
@@ -351,6 +360,10 @@ Languages:
                 if name in self._repos or name in self._exclude_repos:
                     continue
                 self._repos.add(name)
+                self._repo_metadata[name] = {
+                    "pushedAt": repo.get("pushedAt"),
+                    "isPrivate": repo.get("isPrivate", False),
+                }
                 self._stargazers += repo.get("stargazers").get("totalCount", 0)
                 self._forks += repo.get("forkCount", 0)
 
@@ -481,6 +494,65 @@ Languages:
             )
         return cast(int, self._total_contributions)
 
+    def _load_contributors_cache(self) -> Dict[str, Any]:
+        cache_path = os.path.join("cache", f"{self.username}.json")
+        if not os.path.isfile(cache_path):
+            return {}
+        try:
+            with open(cache_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except (json.JSONDecodeError, OSError):
+            return {}
+
+    def _save_contributors_cache(self, cache: Dict[str, Any]) -> None:
+        cache_path = os.path.join("cache", f"{self.username}.json")
+        os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+        with open(cache_path, "w", encoding="utf-8") as f:
+            json.dump(cache, f, indent=2, ensure_ascii=False)
+
+    def _is_cache_valid(self, repo: str, cache: Dict[str, Any]) -> bool:
+        if repo not in cache:
+            return False
+        entry = cache[repo]
+        pushed_at = self._repo_metadata.get(repo, {}).get("pushedAt")
+        fetched_at = entry.get("fetchedAt")
+
+        if not pushed_at or not fetched_at:
+            return False
+
+        try:
+            pushed_dt = datetime.fromisoformat(pushed_at.replace("Z", "+00:00"))
+            fetched_dt = datetime.fromisoformat(fetched_at.replace("Z", "+00:00"))
+        except (ValueError, TypeError):
+            return False
+
+        if pushed_dt > fetched_dt:
+            return False
+
+        if self._cache_expiry_days is not None and self._cache_expiry_days >= 0:
+            expiry = timedelta(days=self._cache_expiry_days)
+            if datetime.now(timezone.utc) - fetched_dt > expiry:
+                return False
+
+        return True
+
+    async def _fetch_contributors_for_repo(self, repo: str) -> Tuple[int, int]:
+        additions = 0
+        deletions = 0
+        r = await self.queries.query_rest(f"/repos/{repo}/stats/contributors")
+        for author_obj in r:
+            if not isinstance(author_obj, dict) or not isinstance(
+                author_obj.get("author", {}), dict
+            ):
+                continue
+            author = author_obj.get("author", {}).get("login", "")
+            if author != self.username:
+                continue
+            for week in author_obj.get("weeks", []):
+                additions += week.get("a", 0)
+                deletions += week.get("d", 0)
+        return (additions, deletions)
+
     @property
     async def lines_changed(self) -> Tuple[int, int]:
         """
@@ -488,23 +560,38 @@ Languages:
         """
         if self._lines_changed is not None:
             return self._lines_changed
+
+        cache = self._load_contributors_cache()
         additions = 0
         deletions = 0
-        for repo in await self.repos:
-            r = await self.queries.query_rest(f"/repos/{repo}/stats/contributors")
-            for author_obj in r:
-                # Handle malformed response from the API by skipping this repo
-                if not isinstance(author_obj, dict) or not isinstance(
-                    author_obj.get("author", {}), dict
-                ):
-                    continue
-                author = author_obj.get("author", {}).get("login", "")
-                if author != self.username:
-                    continue
+        now_iso = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        repos_fetched = []
 
-                for week in author_obj.get("weeks", []):
-                    additions += week.get("a", 0)
-                    deletions += week.get("d", 0)
+        for repo in await self.repos:
+            is_private = self._repo_metadata.get(repo, {}).get("isPrivate", False)
+
+            if not is_private and self._is_cache_valid(repo, cache):
+                entry = cache[repo]
+                additions += entry.get("additions", 0)
+                deletions += entry.get("deletions", 0)
+                continue
+
+            repo_add, repo_del = await self._fetch_contributors_for_repo(repo)
+            additions += repo_add
+            deletions += repo_del
+
+            if not is_private:
+                cache[repo] = {
+                    "fetchedAt": now_iso,
+                    "pushedAt": self._repo_metadata.get(repo, {}).get("pushedAt"),
+                    "additions": repo_add,
+                    "deletions": repo_del,
+                }
+                repos_fetched.append(repo)
+
+        if repos_fetched:
+            self._save_contributors_cache(cache)
+            print(f"Cache updated for {len(repos_fetched)} repos: {', '.join(repos_fetched)}")
 
         self._lines_changed = (additions, deletions)
         return self._lines_changed

@@ -120,6 +120,8 @@ async def main() -> None:
         not not raw_ignore_forked_repos
         and raw_ignore_forked_repos.strip().lower() != "false"
     )
+    raw_cache_expiry = os.getenv("CACHE_EXPIRY_DAYS")
+    cache_expiry_days = int(raw_cache_expiry) if raw_cache_expiry and raw_cache_expiry.isdigit() else None
     timeout = aiohttp.ClientTimeout(total=60, connect=10, sock_read=30)
     async with aiohttp.ClientSession(timeout=timeout) as session:
         s = Stats(
@@ -129,6 +131,7 @@ async def main() -> None:
             exclude_repos=excluded_repos,
             exclude_langs=excluded_langs,
             ignore_forked_repos=ignore_forked_repos,
+            cache_expiry_days=cache_expiry_days,
         )
         await asyncio.gather(generate_languages(s), generate_overview(s))
 
