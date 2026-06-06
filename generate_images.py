@@ -122,6 +122,7 @@ async def main() -> None:
     )
     raw_cache_expiry = os.getenv("CACHE_EXPIRY_DAYS")
     cache_expiry_days = int(raw_cache_expiry) if raw_cache_expiry and raw_cache_expiry.isdigit() else None
+    log_mask_salt = os.getenv("LOG_MASK_SALT")
     timeout = aiohttp.ClientTimeout(total=60, connect=10, sock_read=30)
     async with aiohttp.ClientSession(timeout=timeout) as session:
         s = Stats(
@@ -132,6 +133,7 @@ async def main() -> None:
             exclude_langs=excluded_langs,
             ignore_forked_repos=ignore_forked_repos,
             cache_expiry_days=cache_expiry_days,
+            log_mask_salt=log_mask_salt,
         )
         await asyncio.gather(generate_languages(s), generate_overview(s))
 

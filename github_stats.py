@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import asyncio
+import base64
+import hashlib
 import json
 import os
 from datetime import datetime, timedelta, timezone
@@ -68,17 +70,19 @@ class Queries(object):
                     return result
         return dict()
 
-    async def query_rest(self, path: str, params: Optional[Dict] = None) -> Dict:
+    async def query_rest(self, path: str, params: Optional[Dict] = None, log_prefix: Optional[str] = None) -> Dict:
         """
         Make a request to the REST API
         :param path: API path to query
         :param params: Query parameters to be passed to the API
+        :param log_prefix: display path in logs (for masking private repo names)
         :return: deserialized REST JSON output
         """
         if params is None:
             params = dict()
         if path.startswith("/"):
             path = path[1:]
+        display = log_prefix or path
 
         headers = {
             "Authorization": f"token {self.access_token}",
@@ -94,7 +98,7 @@ class Queries(object):
                     )
                 if r_async.status == 202:
                     wait = min(2 ** (attempt + 1), 30)
-                    print(f"[{attempt + 1}/10] {path} returned 202, retrying in {wait}s...")
+                    print(f"[{attempt + 1}/10] {display} returned 202, retrying in {wait}s...")
                     await asyncio.sleep(wait)
                     continue
 
@@ -102,7 +106,8 @@ class Queries(object):
                 if result is not None:
                     return result
             except Exception as e:
-                print(f"aiohttp failed for rest query: {e}")
+                msg = str(e).replace(path, display)
+                print(f"aiohttp failed for rest query: {msg}")
                 # Fall back on non-async requests
                 try:
                     async with self.semaphore:
@@ -114,15 +119,16 @@ class Queries(object):
                         )
                         if r_requests.status_code == 202:
                             wait = min(2 ** (attempt + 1), 30)
-                            print(f"[{attempt + 1}/10] {path} returned 202, retrying in {wait}s...")
+                            print(f"[{attempt + 1}/10] {display} returned 202, retrying in {wait}s...")
                             await asyncio.sleep(wait)
                             continue
                         elif r_requests.status_code == 200:
                             return r_requests.json()
                 except Exception as e2:
-                    print(f"requests also failed: {e2}")
+                    msg2 = str(e2).replace(path, display)
+                    print(f"requests also failed: {msg2}")
 
-        print(f"Too many 202s for {path}, data will be incomplete.")
+        print(f"Too many 202s for {display}, data will be incomplete.")
         return dict()
 
     @staticmethod
@@ -272,12 +278,14 @@ class Stats(object):
         exclude_langs: Optional[Set] = None,
         ignore_forked_repos: bool = False,
         cache_expiry_days: Optional[int] = None,
+        log_mask_salt: Optional[str] = None,
     ):
         self.username = username
         self._ignore_forked_repos = ignore_forked_repos
         self._exclude_repos = set() if exclude_repos is None else exclude_repos
         self._exclude_langs = set() if exclude_langs is None else exclude_langs
         self._cache_expiry_days = cache_expiry_days
+        self._mask_key = hashlib.sha256(log_mask_salt.encode()).digest()[:16] if log_mask_salt else None
         self.queries = Queries(username, access_token, session)
 
         self._name: Optional[str] = None
@@ -494,6 +502,24 @@ Languages:
             )
         return cast(int, self._total_contributions)
 
+    def _mask_repo_name(self, repo: str) -> str:
+        if not self._mask_key:
+            return repo
+        is_private = self._repo_metadata.get(repo, {}).get("isPrivate", False)
+        if not is_private:
+            return repo
+        encrypted = bytes(
+            a ^ b for a, b in zip(
+                repo.encode(), self._mask_key * (len(repo) // len(self._mask_key) + 1)
+            )
+        )
+        return base64.b32encode(encrypted).rstrip(b"=").decode()
+
+    def _mask_path(self, path: str, repo: str) -> str:
+        if not self._mask_key:
+            return path
+        return path.replace(repo, self._mask_repo_name(repo))
+
     def _load_contributors_cache(self) -> Dict[str, Any]:
         cache_path = os.path.join("cache", f"{self.username}.json")
         if not os.path.isfile(cache_path):
@@ -539,7 +565,8 @@ Languages:
     async def _fetch_contributors_for_repo(self, repo: str) -> Tuple[int, int]:
         additions = 0
         deletions = 0
-        r = await self.queries.query_rest(f"/repos/{repo}/stats/contributors")
+        path = f"/repos/{repo}/stats/contributors"
+        r = await self.queries.query_rest(path, log_prefix=self._mask_path(path, repo))
         for author_obj in r:
             if not isinstance(author_obj, dict) or not isinstance(
                 author_obj.get("author", {}), dict
@@ -607,7 +634,8 @@ Languages:
 
         total = 0
         for repo in await self.repos:
-            r = await self.queries.query_rest(f"/repos/{repo}/traffic/views")
+            path = f"/repos/{repo}/traffic/views"
+            r = await self.queries.query_rest(path, log_prefix=self._mask_path(path, repo))
             for view in r.get("views", []):
                 total += view.get("count", 0)
 

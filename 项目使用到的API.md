@@ -354,6 +354,7 @@ for view in response.get("views", []):
 | `EXCLUDED_LANGS` | 排除的语言列表（逗号分隔，如 `html,tex`） | 可选 | GitHub Actions Secret |
 | `EXCLUDE_FORKED_REPOS` | 是否排除 fork 仓库（`true`/`false`） | 可选 | workflow 中硬编码为 `true` |
 | `CACHE_EXPIRY_DAYS` | `/stats/contributors` 缓存过期天数（见下文说明） | 可选 | GitHub Actions Secret |
+| `LOG_MASK_SALT` | 私有仓库日志脱敏盐值（XOR 密钥派生，见下文说明） | 可选 | GitHub Actions Secret |
 
 ### 3.2 变量流转与影响范围
 
@@ -440,6 +441,25 @@ Queries.__init__(username, access_token)
 | `0` | 每次运行都强制刷新所有仓库（等同于禁用缓存） |
 
 > 建议设置 `CACHE_EXPIRY_DAYS: 7`，7 天刚好覆盖一个数据聚合周期，防止 `pushedAt` 未及时更新导致数据陈旧。
+
+#### `LOG_MASK_SALT` — 私有仓库日志脱敏
+
+| 影响的 API/逻辑 | 影响方式 | 代码位置 |
+|----------------|---------|----------|
+| `query_rest()` 日志输出 | 私有仓库的路径中仓库名被替换为 XOR 加密标识 | `github_stats.py:70-130` |
+| `_fetch_contributors_for_repo()` | 传入脱敏后的路径 | `github_stats.py:565` |
+| `views` 属性 | 传入脱敏后的路径 | `github_stats.py:634` |
+
+| 值 | 行为 |
+|-----|------|
+| 未设置（默认） | 所有仓库名称正常显示在日志中 |
+| 设置为任意字符串 | 私有仓库名被 XOR + Base32 加密后显示 |
+
+设置为 Repository Secret，不在日志中暴露。本地可使用 `decrypt_log.py` 脚本解密：
+```bash
+$ LOG_MASK_SALT="your-salt" python decrypt_log.py GEZDGNBVGY3TQNZTGQY
+GEZDGNBVGY3TQNZTGQY → example-repo
+```
 
 ### 3.4 变量对 API 调用次数的影响
 
