@@ -90,8 +90,8 @@
     "deletions": 145
   },
   "yansheng836/bilibili-45969": {
-    "fetchedAt": "2026-06-23T04:15:40.488509Z",
-    "pushedAt": "2026-06-22T19:33:00Z",
+    "fetchedAt": "2026-06-24T04:19:07.190210Z",
+    "pushedAt": "2026-06-23T18:00:07Z",
     "additions": 11969,
     "deletions": 2542
   },
@@ -138,8 +138,8 @@
     "deletions": 3500
   },
   "yansheng836/github-stats": {
-    "fetchedAt": "2026-06-23T04:15:40.488509Z",
-    "pushedAt": "2026-06-22T05:28:39Z",
+    "fetchedAt": "2026-06-24T04:19:07.190210Z",
+    "pushedAt": "2026-06-23T04:18:47Z",
     "additions": 3890,
     "deletions": 135
   },
@@ -150,8 +150,8 @@
     "deletions": 8223
   },
   "yansheng836/bilibili-Fanrenpc": {
-    "fetchedAt": "2026-06-23T04:15:40.488509Z",
-    "pushedAt": "2026-06-22T19:27:45Z",
+    "fetchedAt": "2026-06-24T04:19:07.190210Z",
+    "pushedAt": "2026-06-23T17:53:14Z",
     "additions": 167685,
     "deletions": 40621
   },
@@ -180,8 +180,8 @@
     "deletions": 1255
   },
   "yansheng836/bilibili-43369": {
-    "fetchedAt": "2026-06-23T04:15:40.488509Z",
-    "pushedAt": "2026-06-22T19:32:50Z",
+    "fetchedAt": "2026-06-24T04:19:07.190210Z",
+    "pushedAt": "2026-06-23T18:00:20Z",
     "additions": 28048,
     "deletions": 21650
   },
@@ -222,7 +222,7 @@
     "deletions": 187
   },
   "yansheng836/yansheng836": {
-    "fetchedAt": "2026-06-16T05:25:12.734388Z",
+    "fetchedAt": "2026-06-24T04:19:07.190210Z",
     "pushedAt": "2026-06-15T19:54:27Z",
     "additions": 235,
     "deletions": 26
@@ -294,9 +294,9 @@
     "deletions": 1987
   },
   "yansheng836/ai-model-news": {
-    "fetchedAt": "2026-06-21T05:10:22.835334Z",
-    "pushedAt": "2026-06-20T14:51:36Z",
-    "additions": 5346,
-    "deletions": 2629
+    "fetchedAt": "2026-06-24T04:19:07.190210Z",
+    "pushedAt": "2026-06-23T09:38:43Z",
+    "additions": 19692,
+    "deletions": 15785
   }
 }
