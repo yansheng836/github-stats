@@ -1,6 +1,6 @@
 {
   "yansheng836/python-toolbox": {
-    "fetchedAt": "2026-06-18T04:54:29.848083Z",
+    "fetchedAt": "2026-06-26T04:25:17.330933Z",
     "pushedAt": "2026-06-18T01:18:35Z",
     "additions": 24039,
     "deletions": 11022
@@ -90,8 +90,8 @@
     "deletions": 145
   },
   "yansheng836/bilibili-45969": {
-    "fetchedAt": "2026-06-25T04:18:46.218933Z",
-    "pushedAt": "2026-06-24T17:57:59Z",
+    "fetchedAt": "2026-06-26T04:25:17.330933Z",
+    "pushedAt": "2026-06-25T18:13:24Z",
     "additions": 11969,
     "deletions": 2542
   },
@@ -138,8 +138,8 @@
     "deletions": 3500
   },
   "yansheng836/github-stats": {
-    "fetchedAt": "2026-06-25T04:18:46.218933Z",
-    "pushedAt": "2026-06-24T04:23:41Z",
+    "fetchedAt": "2026-06-26T04:25:17.330933Z",
+    "pushedAt": "2026-06-25T04:21:43Z",
     "additions": 3890,
     "deletions": 135
   },
@@ -150,8 +150,8 @@
     "deletions": 8223
   },
   "yansheng836/bilibili-Fanrenpc": {
-    "fetchedAt": "2026-06-25T04:18:46.218933Z",
-    "pushedAt": "2026-06-24T17:56:38Z",
+    "fetchedAt": "2026-06-26T04:25:17.330933Z",
+    "pushedAt": "2026-06-25T18:10:00Z",
     "additions": 167685,
     "deletions": 40621
   },
@@ -180,8 +180,8 @@
     "deletions": 1255
   },
   "yansheng836/bilibili-43369": {
-    "fetchedAt": "2026-06-25T04:18:46.218933Z",
-    "pushedAt": "2026-06-24T17:57:45Z",
+    "fetchedAt": "2026-06-26T04:25:17.330933Z",
+    "pushedAt": "2026-06-25T18:12:37Z",
     "additions": 28048,
     "deletions": 21650
   },
@@ -258,8 +258,8 @@
     "deletions": 0
   },
   "yansheng836/hero-skin-image": {
-    "fetchedAt": "2026-06-21T05:10:22.835334Z",
-    "pushedAt": "2026-04-15T17:16:48Z",
+    "fetchedAt": "2026-06-26T04:25:17.330933Z",
+    "pushedAt": "2026-06-25T18:21:17Z",
     "additions": 38580,
     "deletions": 21152
   },
@@ -282,21 +282,21 @@
     "deletions": 138
   },
   "yansheng836/guangdong-schools": {
-    "fetchedAt": "2026-06-22T05:23:11.859400Z",
-    "pushedAt": "2026-06-21T13:16:55Z",
-    "additions": 180396,
-    "deletions": 105244
+    "fetchedAt": "2026-06-26T04:25:17.330933Z",
+    "pushedAt": "2026-06-25T10:01:51Z",
+    "additions": 196189,
+    "deletions": 118313
   },
   "yansheng836/guangdong-travel": {
-    "fetchedAt": "2026-06-23T04:15:40.488509Z",
-    "pushedAt": "2026-06-22T09:53:25Z",
-    "additions": 21985,
-    "deletions": 1987
+    "fetchedAt": "2026-06-26T04:25:17.330933Z",
+    "pushedAt": "2026-06-25T10:01:15Z",
+    "additions": 54247,
+    "deletions": 29374
   },
   "yansheng836/ai-model-news": {
-    "fetchedAt": "2026-06-25T04:18:46.218933Z",
-    "pushedAt": "2026-06-25T01:45:10Z",
-    "additions": 19849,
-    "deletions": 15940
+    "fetchedAt": "2026-06-26T04:25:17.330933Z",
+    "pushedAt": "2026-06-25T06:46:21Z",
+    "additions": 20696,
+    "deletions": 16456
   }
 }
