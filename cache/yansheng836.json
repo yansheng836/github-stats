@@ -90,8 +90,8 @@
     "deletions": 145
   },
   "yansheng836/bilibili-45969": {
-    "fetchedAt": "2026-07-25T03:31:35.763434Z",
-    "pushedAt": "2026-07-24T17:41:30Z",
+    "fetchedAt": "2026-07-26T03:47:41.035982Z",
+    "pushedAt": "2026-07-25T17:01:59Z",
     "additions": 11969,
     "deletions": 2542
   },
@@ -138,8 +138,8 @@
     "deletions": 3500
   },
   "yansheng836/github-stats": {
-    "fetchedAt": "2026-07-25T03:31:35.763434Z",
-    "pushedAt": "2026-07-24T03:38:25Z",
+    "fetchedAt": "2026-07-26T03:47:41.035982Z",
+    "pushedAt": "2026-07-25T03:33:37Z",
     "additions": 3890,
     "deletions": 135
   },
@@ -150,8 +150,8 @@
     "deletions": 8223
   },
   "yansheng836/bilibili-Fanrenpc": {
-    "fetchedAt": "2026-07-25T03:31:35.763434Z",
-    "pushedAt": "2026-07-24T17:29:26Z",
+    "fetchedAt": "2026-07-26T03:47:41.035982Z",
+    "pushedAt": "2026-07-25T16:53:36Z",
     "additions": 167685,
     "deletions": 40621
   },
@@ -180,8 +180,8 @@
     "deletions": 1255
   },
   "yansheng836/bilibili-43369": {
-    "fetchedAt": "2026-07-25T03:31:35.763434Z",
-    "pushedAt": "2026-07-24T17:40:18Z",
+    "fetchedAt": "2026-07-26T03:47:41.035982Z",
+    "pushedAt": "2026-07-25T17:02:49Z",
     "additions": 28048,
     "deletions": 21650
   },
@@ -288,15 +288,15 @@
     "deletions": 144250
   },
   "yansheng836/guangdong-travel": {
-    "fetchedAt": "2026-07-19T03:41:05.631404Z",
+    "fetchedAt": "2026-07-26T03:47:41.035982Z",
     "pushedAt": "2026-07-18T15:45:29Z",
     "additions": 145583,
     "deletions": 89155
   },
   "yansheng836/ai-model-news": {
-    "fetchedAt": "2026-07-20T03:55:02.978768Z",
-    "pushedAt": "2026-07-20T02:01:22Z",
-    "additions": 25395,
-    "deletions": 20253
+    "fetchedAt": "2026-07-26T03:47:41.035982Z",
+    "pushedAt": "2026-07-25T10:25:53Z",
+    "additions": 25422,
+    "deletions": 20261
   }
 }
