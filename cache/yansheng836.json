@@ -42,8 +42,8 @@
     "deletions": 0
   },
   "yansheng836/github-actions-test": {
-    "fetchedAt": "2026-08-08T02:10:33.172084Z",
-    "pushedAt": "2026-07-16T11:36:39Z",
+    "fetchedAt": "2026-08-11T02:20:40.282452Z",
+    "pushedAt": "2026-08-10T09:15:25Z",
     "additions": 474,
     "deletions": 39
   },
@@ -90,8 +90,8 @@
     "deletions": 145
   },
   "yansheng836/bilibili-45969": {
-    "fetchedAt": "2026-08-10T02:27:24.528215Z",
-    "pushedAt": "2026-08-09T16:38:37Z",
+    "fetchedAt": "2026-08-11T02:20:40.282452Z",
+    "pushedAt": "2026-08-10T16:56:46Z",
     "additions": 11969,
     "deletions": 2542
   },
@@ -138,8 +138,8 @@
     "deletions": 3500
   },
   "yansheng836/github-stats": {
-    "fetchedAt": "2026-08-10T02:27:24.528215Z",
-    "pushedAt": "2026-08-09T02:24:03Z",
+    "fetchedAt": "2026-08-11T02:20:40.282452Z",
+    "pushedAt": "2026-08-10T02:30:25Z",
     "additions": 3890,
     "deletions": 135
   },
@@ -150,8 +150,8 @@
     "deletions": 8223
   },
   "yansheng836/bilibili-Fanrenpc": {
-    "fetchedAt": "2026-08-10T02:27:24.528215Z",
-    "pushedAt": "2026-08-09T16:28:41Z",
+    "fetchedAt": "2026-08-11T02:20:40.282452Z",
+    "pushedAt": "2026-08-10T16:50:12Z",
     "additions": 167685,
     "deletions": 40621
   },
@@ -180,8 +180,8 @@
     "deletions": 1255
   },
   "yansheng836/bilibili-43369": {
-    "fetchedAt": "2026-08-09T02:22:11.296491Z",
-    "pushedAt": "2026-08-08T16:36:41Z",
+    "fetchedAt": "2026-08-11T02:20:40.282452Z",
+    "pushedAt": "2026-08-10T16:55:58Z",
     "additions": 28048,
     "deletions": 21650
   },
@@ -222,8 +222,8 @@
     "deletions": 187
   },
   "yansheng836/yansheng836": {
-    "fetchedAt": "2026-08-08T02:10:33.172084Z",
-    "pushedAt": "2026-07-16T17:38:29Z",
+    "fetchedAt": "2026-08-11T02:20:40.282452Z",
+    "pushedAt": "2026-08-10T17:06:15Z",
     "additions": 235,
     "deletions": 26
   },
@@ -288,7 +288,7 @@
     "deletions": 144250
   },
   "yansheng836/guangdong-travel": {
-    "fetchedAt": "2026-08-03T03:45:57.470037Z",
+    "fetchedAt": "2026-08-11T02:20:40.282452Z",
     "pushedAt": "2026-07-18T15:45:29Z",
     "additions": 145583,
     "deletions": 89155
@@ -298,5 +298,11 @@
     "pushedAt": "2026-08-01T14:01:37Z",
     "additions": 25701,
     "deletions": 20522
+  },
+  "yansheng836/timescaledb-pg11-build": {
+    "fetchedAt": "2026-08-11T02:20:40.282452Z",
+    "pushedAt": "2026-08-10T08:06:14Z",
+    "additions": 325,
+    "deletions": 43
   }
 }
