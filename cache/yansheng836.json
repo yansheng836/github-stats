@@ -90,8 +90,8 @@
     "deletions": 145
   },
   "yansheng836/bilibili-45969": {
-    "fetchedAt": "2026-09-08T04:23:27.568111Z",
-    "pushedAt": "2026-09-07T19:42:33Z",
+    "fetchedAt": "2026-09-09T04:28:27.506388Z",
+    "pushedAt": "2026-09-08T19:19:40Z",
     "additions": 11969,
     "deletions": 2542
   },
@@ -138,8 +138,8 @@
     "deletions": 3500
   },
   "yansheng836/github-stats": {
-    "fetchedAt": "2026-09-08T04:23:27.568111Z",
-    "pushedAt": "2026-09-07T04:27:56Z",
+    "fetchedAt": "2026-09-09T04:28:27.506388Z",
+    "pushedAt": "2026-09-08T04:28:07Z",
     "additions": 3890,
     "deletions": 135
   },
@@ -150,8 +150,8 @@
     "deletions": 8223
   },
   "yansheng836/bilibili-Fanrenpc": {
-    "fetchedAt": "2026-09-08T04:23:27.568111Z",
-    "pushedAt": "2026-09-07T19:38:28Z",
+    "fetchedAt": "2026-09-09T04:28:27.506388Z",
+    "pushedAt": "2026-09-08T19:16:04Z",
     "additions": 167685,
     "deletions": 40621
   },
@@ -180,8 +180,8 @@
     "deletions": 1255
   },
   "yansheng836/bilibili-43369": {
-    "fetchedAt": "2026-09-08T04:23:27.568111Z",
-    "pushedAt": "2026-09-07T19:41:49Z",
+    "fetchedAt": "2026-09-09T04:28:27.506388Z",
+    "pushedAt": "2026-09-08T19:20:17Z",
     "additions": 28048,
     "deletions": 21650
   },
@@ -282,13 +282,13 @@
     "deletions": 138
   },
   "yansheng836/guangdong-schools": {
-    "fetchedAt": "2026-09-02T04:17:15.050054Z",
+    "fetchedAt": "2026-09-09T04:28:27.506388Z",
     "pushedAt": "2026-08-18T09:15:12Z",
     "additions": 254812,
     "deletions": 152987
   },
   "yansheng836/guangdong-travel": {
-    "fetchedAt": "2026-09-02T04:17:15.050054Z",
+    "fetchedAt": "2026-09-09T04:28:27.506388Z",
     "pushedAt": "2026-08-18T07:21:08Z",
     "additions": 165182,
     "deletions": 104639
@@ -300,7 +300,7 @@
     "deletions": 20525
   },
   "yansheng836/timescaledb-pg11-build": {
-    "fetchedAt": "2026-09-02T04:17:15.050054Z",
+    "fetchedAt": "2026-09-09T04:28:27.506388Z",
     "pushedAt": "2026-08-10T08:06:14Z",
     "additions": 325,
     "deletions": 43
