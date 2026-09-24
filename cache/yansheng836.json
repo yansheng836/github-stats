@@ -90,8 +90,8 @@
     "deletions": 145
   },
   "yansheng836/bilibili-45969": {
-    "fetchedAt": "2026-09-23T04:36:11.378285Z",
-    "pushedAt": "2026-09-22T19:38:18Z",
+    "fetchedAt": "2026-09-24T04:34:12.658383Z",
+    "pushedAt": "2026-09-23T19:33:59Z",
     "additions": 11969,
     "deletions": 2542
   },
@@ -138,8 +138,8 @@
     "deletions": 3500
   },
   "yansheng836/github-stats": {
-    "fetchedAt": "2026-09-23T04:36:11.378285Z",
-    "pushedAt": "2026-09-22T04:45:43Z",
+    "fetchedAt": "2026-09-24T04:34:12.658383Z",
+    "pushedAt": "2026-09-23T04:40:32Z",
     "additions": 3890,
     "deletions": 135
   },
@@ -150,8 +150,8 @@
     "deletions": 8223
   },
   "yansheng836/bilibili-Fanrenpc": {
-    "fetchedAt": "2026-09-23T04:36:11.378285Z",
-    "pushedAt": "2026-09-22T19:32:02Z",
+    "fetchedAt": "2026-09-24T04:34:12.658383Z",
+    "pushedAt": "2026-09-23T19:27:46Z",
     "additions": 167685,
     "deletions": 40621
   },
@@ -180,8 +180,8 @@
     "deletions": 1255
   },
   "yansheng836/bilibili-43369": {
-    "fetchedAt": "2026-09-23T04:36:11.378285Z",
-    "pushedAt": "2026-09-22T19:37:29Z",
+    "fetchedAt": "2026-09-24T04:34:12.658383Z",
+    "pushedAt": "2026-09-23T19:33:35Z",
     "additions": 28048,
     "deletions": 21650
   },
@@ -282,7 +282,7 @@
     "deletions": 138
   },
   "yansheng836/guangdong-schools": {
-    "fetchedAt": "2026-09-16T04:39:42.163153Z",
+    "fetchedAt": "2026-09-24T04:34:12.658383Z",
     "pushedAt": "2026-08-18T09:15:12Z",
     "additions": 254812,
     "deletions": 152987
@@ -300,9 +300,15 @@
     "deletions": 21471
   },
   "yansheng836/timescaledb-pg11-build": {
-    "fetchedAt": "2026-09-16T04:39:42.163153Z",
+    "fetchedAt": "2026-09-24T04:34:12.658383Z",
     "pushedAt": "2026-08-10T08:06:14Z",
     "additions": 325,
     "deletions": 43
+  },
+  "yansheng836/parallel-histories": {
+    "fetchedAt": "2026-09-24T04:34:12.658383Z",
+    "pushedAt": "2026-09-24T02:10:22Z",
+    "additions": 1915,
+    "deletions": 36
   }
 }
