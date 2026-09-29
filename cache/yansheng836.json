@@ -90,8 +90,8 @@
     "deletions": 145
   },
   "yansheng836/bilibili-45969": {
-    "fetchedAt": "2026-09-28T05:12:02.940560Z",
-    "pushedAt": "2026-09-27T19:38:55Z",
+    "fetchedAt": "2026-09-29T05:34:27.224850Z",
+    "pushedAt": "2026-09-28T21:41:04Z",
     "additions": 11969,
     "deletions": 2542
   },
@@ -138,8 +138,8 @@
     "deletions": 3500
   },
   "yansheng836/github-stats": {
-    "fetchedAt": "2026-09-28T05:12:02.940560Z",
-    "pushedAt": "2026-09-27T05:17:58Z",
+    "fetchedAt": "2026-09-29T05:34:27.224850Z",
+    "pushedAt": "2026-09-28T05:14:32Z",
     "additions": 3890,
     "deletions": 135
   },
@@ -150,8 +150,8 @@
     "deletions": 8223
   },
   "yansheng836/bilibili-Fanrenpc": {
-    "fetchedAt": "2026-09-28T05:12:02.940560Z",
-    "pushedAt": "2026-09-27T19:33:46Z",
+    "fetchedAt": "2026-09-29T05:34:27.224850Z",
+    "pushedAt": "2026-09-28T21:35:24Z",
     "additions": 167685,
     "deletions": 40621
   },
@@ -180,8 +180,8 @@
     "deletions": 1255
   },
   "yansheng836/bilibili-43369": {
-    "fetchedAt": "2026-09-28T05:12:02.940560Z",
-    "pushedAt": "2026-09-27T19:39:08Z",
+    "fetchedAt": "2026-09-29T05:34:27.224850Z",
+    "pushedAt": "2026-09-28T21:40:46Z",
     "additions": 28048,
     "deletions": 21650
   },
@@ -306,9 +306,9 @@
     "deletions": 43
   },
   "yansheng836/parallel-histories": {
-    "fetchedAt": "2026-09-25T04:44:53.674205Z",
-    "pushedAt": "2026-09-24T08:26:20Z",
-    "additions": 2786,
-    "deletions": 126
+    "fetchedAt": "2026-09-29T05:34:27.224850Z",
+    "pushedAt": "2026-09-29T05:24:37Z",
+    "additions": 3615,
+    "deletions": 195
   }
 }
