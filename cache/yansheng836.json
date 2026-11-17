@@ -42,8 +42,8 @@
     "deletions": 0
   },
   "yansheng836/github-actions-test": {
-    "fetchedAt": "2026-11-14T06:05:21.100520Z",
-    "pushedAt": "2026-11-13T12:49:59Z",
+    "fetchedAt": "2026-11-17T07:44:21.416019Z",
+    "pushedAt": "2026-11-16T17:52:28Z",
     "additions": 477,
     "deletions": 42
   },
@@ -90,8 +90,8 @@
     "deletions": 145
   },
   "yansheng836/bilibili-45969": {
-    "fetchedAt": "2026-11-16T06:08:57.438679Z",
-    "pushedAt": "2026-11-15T20:54:16Z",
+    "fetchedAt": "2026-11-17T07:44:21.416019Z",
+    "pushedAt": "2026-11-17T00:03:14Z",
     "additions": 11977,
     "deletions": 2552
   },
@@ -138,8 +138,8 @@
     "deletions": 3500
   },
   "yansheng836/github-stats": {
-    "fetchedAt": "2026-11-16T06:08:57.438679Z",
-    "pushedAt": "2026-11-15T06:13:59Z",
+    "fetchedAt": "2026-11-17T07:44:21.416019Z",
+    "pushedAt": "2026-11-16T06:11:45Z",
     "additions": 3895,
     "deletions": 140
   },
@@ -150,8 +150,8 @@
     "deletions": 8223
   },
   "yansheng836/bilibili-Fanrenpc": {
-    "fetchedAt": "2026-11-16T06:08:57.438679Z",
-    "pushedAt": "2026-11-15T20:46:17Z",
+    "fetchedAt": "2026-11-17T07:44:21.416019Z",
+    "pushedAt": "2026-11-17T00:02:46Z",
     "additions": 167685,
     "deletions": 40621
   },
@@ -162,8 +162,8 @@
     "deletions": 355
   },
   "yansheng836/hero-skin": {
-    "fetchedAt": "2026-11-16T06:08:57.438679Z",
-    "pushedAt": "2026-11-15T08:22:49Z",
+    "fetchedAt": "2026-11-17T07:44:21.416019Z",
+    "pushedAt": "2026-11-16T11:09:46Z",
     "additions": 159016,
     "deletions": 45539
   },
@@ -180,8 +180,8 @@
     "deletions": 1255
   },
   "yansheng836/bilibili-43369": {
-    "fetchedAt": "2026-11-16T06:08:57.438679Z",
-    "pushedAt": "2026-11-15T20:53:39Z",
+    "fetchedAt": "2026-11-17T07:44:21.416019Z",
+    "pushedAt": "2026-11-17T00:02:43Z",
     "additions": 28056,
     "deletions": 21660
   },
@@ -222,8 +222,8 @@
     "deletions": 187
   },
   "yansheng836/yansheng836": {
-    "fetchedAt": "2026-11-14T06:05:21.100520Z",
-    "pushedAt": "2026-11-13T21:57:04Z",
+    "fetchedAt": "2026-11-17T07:44:21.416019Z",
+    "pushedAt": "2026-11-17T00:12:24Z",
     "additions": 235,
     "deletions": 26
   },
@@ -258,8 +258,8 @@
     "deletions": 0
   },
   "yansheng836/hero-skin-image": {
-    "fetchedAt": "2026-11-13T06:24:24.984771Z",
-    "pushedAt": "2026-10-04T04:36:24Z",
+    "fetchedAt": "2026-11-17T07:44:21.416019Z",
+    "pushedAt": "2026-11-17T00:09:11Z",
     "additions": 38587,
     "deletions": 21159
   },
@@ -310,5 +310,11 @@
     "pushedAt": "2026-09-29T05:24:37Z",
     "additions": 3615,
     "deletions": 195
+  },
+  "yansheng836/github-pages": {
+    "fetchedAt": "2026-11-17T07:44:21.416019Z",
+    "pushedAt": "2026-11-17T06:16:08Z",
+    "additions": 986,
+    "deletions": 77
   }
 }
