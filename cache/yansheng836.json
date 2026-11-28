@@ -90,8 +90,8 @@
     "deletions": 145
   },
   "yansheng836/bilibili-45969": {
-    "fetchedAt": "2026-11-27T08:06:08.845681Z",
-    "pushedAt": "2026-11-27T00:23:50Z",
+    "fetchedAt": "2026-11-28T07:32:39.376904Z",
+    "pushedAt": "2026-11-27T23:57:45Z",
     "additions": 11977,
     "deletions": 2552
   },
@@ -138,8 +138,8 @@
     "deletions": 3500
   },
   "yansheng836/github-stats": {
-    "fetchedAt": "2026-11-27T08:06:08.845681Z",
-    "pushedAt": "2026-11-26T08:04:35Z",
+    "fetchedAt": "2026-11-28T07:32:39.376904Z",
+    "pushedAt": "2026-11-27T08:57:03Z",
     "additions": 3895,
     "deletions": 140
   },
@@ -150,10 +150,10 @@
     "deletions": 8223
   },
   "yansheng836/bilibili-Fanrenpc": {
-    "fetchedAt": "2026-11-27T08:06:08.845681Z",
-    "pushedAt": "2026-11-27T00:18:08Z",
-    "additions": 0,
-    "deletions": 0
+    "fetchedAt": "2026-11-28T07:32:39.376904Z",
+    "pushedAt": "2026-11-27T23:57:49Z",
+    "additions": 167685,
+    "deletions": 40621
   },
   "yansheng836/awesome-idea-plugin": {
     "fetchedAt": "2026-11-27T08:06:08.845681Z",
@@ -180,8 +180,8 @@
     "deletions": 1255
   },
   "yansheng836/bilibili-43369": {
-    "fetchedAt": "2026-11-27T08:06:08.845681Z",
-    "pushedAt": "2026-11-27T00:23:19Z",
+    "fetchedAt": "2026-11-28T07:32:39.376904Z",
+    "pushedAt": "2026-11-27T23:56:53Z",
     "additions": 28056,
     "deletions": 21660
   },
@@ -294,10 +294,10 @@
     "deletions": 104640
   },
   "yansheng836/ai-model-news": {
-    "fetchedAt": "2026-11-26T08:01:31.818586Z",
-    "pushedAt": "2026-11-19T02:28:15Z",
-    "additions": 37885,
-    "deletions": 28235
+    "fetchedAt": "2026-11-28T07:32:39.376904Z",
+    "pushedAt": "2026-11-27T10:07:52Z",
+    "additions": 37989,
+    "deletions": 28241
   },
   "yansheng836/timescaledb-pg11-build": {
     "fetchedAt": "2026-11-27T08:06:08.845681Z",
@@ -312,8 +312,8 @@
     "deletions": 195
   },
   "yansheng836/github-pages": {
-    "fetchedAt": "2026-11-27T08:06:08.845681Z",
-    "pushedAt": "2026-11-27T06:26:49Z",
+    "fetchedAt": "2026-11-28T07:32:39.376904Z",
+    "pushedAt": "2026-11-28T06:02:22Z",
     "additions": 1823,
     "deletions": 412
   }
